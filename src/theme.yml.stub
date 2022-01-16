@@ -1,0 +1,13 @@
+name: $NAME
+author: ''
+version: 1.0
+blocks:
+    text:
+        label: Text
+        fields:
+            title:
+                label: Title
+                type: text
+            content:
+                label: Markdown
+                type: markdown
