@@ -20,4 +20,9 @@ class Page extends Model
     protected $casts = [
         'blocks' => 'json',
     ];
+
+    public static function findByUrl($url)
+    {
+        return static::where('url', $url)->first();
+    }
 }

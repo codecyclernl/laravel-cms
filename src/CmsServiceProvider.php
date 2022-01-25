@@ -2,12 +2,12 @@
 
 namespace Codecycler\Cms;
 
-use Codecycler\Cms\Commands\CreateThemeBlock;
-use Route;
-use Schema;
-use Codecycler\Cms\Models\Page;
 use Filament\PluginServiceProvider;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Codecycler\Cms\Resources\PageResource;
+use Codecycler\Cms\Commands\CreateThemeBlock;
+use Codecycler\Cms\Http\Controllers\CmsController;
 
 class CmsServiceProvider extends PluginServiceProvider
 {
@@ -26,15 +26,7 @@ class CmsServiceProvider extends PluginServiceProvider
             return;
         }
 
-        $pages = Page::all();
-
-        foreach($pages as $page) {
-            Route::get($page->url, function () use ($page) {
-                return view('theme/page', [
-                    'page' => $page,
-                ]);
-            });
-        }
+        Route::fallback([CmsController::class, 'run']);
     }
 
     public function packageConfigured($package): void
