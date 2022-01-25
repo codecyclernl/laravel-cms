@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Theme\Blocks;
+
+use Codecycler\Cms\BlockBase;
+
+class BlockType extends BlockBase
+{
+    public string $name = 'TYPE';
+
+    public string $label = 'TYPE';
+}

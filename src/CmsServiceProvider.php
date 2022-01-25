@@ -2,6 +2,7 @@
 
 namespace Codecycler\Cms;
 
+use Codecycler\Cms\Commands\CreateThemeBlock;
 use Route;
 use Schema;
 use Codecycler\Cms\Models\Page;
@@ -38,7 +39,9 @@ class CmsServiceProvider extends PluginServiceProvider
 
     public function packageConfigured($package): void
     {
-        $package->hasMigration('create_cms_pages_table');
+        $package
+            ->hasMigration('create_cms_pages_table')
+            ->hasCommand(CreateThemeBlock::class);
     }
 
     public function registeringPackage()

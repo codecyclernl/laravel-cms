@@ -3,46 +3,41 @@
 namespace Codecycler\Cms;
 
 use Filament\Forms\Components\Builder\Block;
-use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Str;
 
 class Theme
 {
     protected array $config;
 
+    protected array $blocks = [];
+
     public function __construct(array $config)
     {
         $this->config = $config;
+
+        // Register the options
+        $filesystem = app(Filesystem::class);
+
+        $this->blocks = collect($filesystem->allFiles(app_path('Theme/Blocks')))->map(function ($file): string {
+            return Str::of('Theme/Blocks')->append('\\', $file->getRelativePathname())
+                ->replace(['/', '.php'], ['\\', '']);
+        })->toArray();
     }
 
     public function getBlockOptions(): array
     {
         $schema = [];
 
-        $blocks = $this->config['blocks'];
+        foreach ($this->blocks as $blockOption) {
+            $className = 'App\\' . $blockOption;
+            $block = new $className();
 
-        foreach ($blocks as $key => $block) {
-            $schema[] = Block::make($key)->schema(
-                $this->getBlockForm($block['fields'])
+            $schema[] = Block::make($block->name)->schema(
+                $block->getSchema()
             );
         }
 
         return $schema;
-    }
-
-    protected function getBlockForm(array $fields): array
-    {
-        $formFields = [];
-
-        foreach ($fields as $name => $fieldConfig) {
-            $formFields[] = match ($fieldConfig['type']) {
-                'text' => TextInput::make($name),
-                'textarea' => Textarea::make($name),
-                'markdown' => MarkdownEditor::make($name),
-            };
-        }
-
-        return $formFields;
     }
 }
