@@ -16,6 +16,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables\Columns\TextColumn;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class PageResource extends Resource
 {
@@ -37,7 +38,8 @@ class PageResource extends Resource
                             Select::make('layout')->options([
                                 'default' => 'default.blade.php',
                             ])->required(),
-
+                            TinyEditor::make('content')
+                                ->showMenuBar(),
                             Builder::make('blocks')->blocks(
                                 app('cms')->theme->getBlockOptions()
                             )->columnSpan(2),
