@@ -20,13 +20,13 @@
         "filament/filament": "^2.7",
         "illuminate/contracts": "^8.73",
         "spatie/laravel-package-tools": "^1.9.2",
-        "symfony/yaml": "^6.0",
+        "symfony/yaml": "^5.0|^6.0",
         "mohamedsabil83/filament-forms-tinyeditor": "v1.5.0"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.10",
         "nunomaduro/larastan": "^1.0",
-        "orchestra/testbench": "^6.22",
+        "orchestra/testbench": "^6.23",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
         "phpstan/extension-installer": "^1.1",
