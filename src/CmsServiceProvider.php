@@ -32,7 +32,10 @@ class CmsServiceProvider extends PluginServiceProvider
     public function packageConfigured($package): void
     {
         $package
-            ->hasMigration('create_cms_pages_table')
+            ->hasMigrations([
+                'create_cms_pages_table',
+                'update_cms_pages_table',
+            ])
             ->hasCommand(CreateThemeBlock::class);
     }
 
