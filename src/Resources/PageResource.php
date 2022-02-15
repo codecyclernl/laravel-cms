@@ -43,8 +43,7 @@ class PageResource extends Resource
                             )->columnSpan(2)->label('Blokken voor content'),
                             TinyEditor::make('content')
                                 ->showMenuBar()
-                                ->columnSpan(4)
-                                ->height(400),
+                                ->columnSpan(4),
                             Builder::make('blocks')->blocks(
                                 app('cms')->theme->getBlockOptions()
                             )->columnSpan(2)->label('Blokken na content'),
