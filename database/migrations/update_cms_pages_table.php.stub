@@ -9,8 +9,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cms_pages', function (Blueprint $table) {
-            $table->text('blocks_before')->after('content')->nullable();
-            $table->longText('content')->after('blocks')->nullable();
+            $table->text('blocks_before')->after('meta_description')->nullable();
+            $table->longText('content')->after('blocks_before')->nullable();
         });
     }
 
