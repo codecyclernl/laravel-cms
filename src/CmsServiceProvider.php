@@ -26,7 +26,8 @@ class CmsServiceProvider extends PluginServiceProvider
             return;
         }
 
-        Route::fallback([CmsController::class, 'run']);
+        Route::fallback([CmsController::class, 'run'])
+            ->middleware('web');
     }
 
     public function packageConfigured($package): void
