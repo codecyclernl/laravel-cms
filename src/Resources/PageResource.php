@@ -38,16 +38,19 @@ class PageResource extends Resource
                             Select::make('layout')->options([
                                 'default' => 'default.blade.php',
                             ])->required(),
+                            TinyEditor::make('content')
+                                ->showMenuBar()
+                                ->columnSpan(3),
+                        ])->columns(2),
+                        Tabs\Tab::make('Blocks')->schema([
                             Builder::make('blocks_before')->blocks(
                                 app('cms')->theme->getBlockOptions()
                             )->columnSpan(2)->label('Blokken voor content'),
-                            TinyEditor::make('content')
-                                ->showMenuBar()
-                                ->columnSpan(4),
+
                             Builder::make('blocks')->blocks(
                                 app('cms')->theme->getBlockOptions()
                             )->columnSpan(2)->label('Blokken na content'),
-                        ])->columns(2),
+                        ]),
                         Tabs\Tab::make('SEO')->schema([
                             TextInput::make('meta_title'),
                             Textarea::make('meta_description'),
