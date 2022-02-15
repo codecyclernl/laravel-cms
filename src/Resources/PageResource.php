@@ -37,6 +37,7 @@ class PageResource extends Resource
                             Select::make('layout')->options([
                                 'default' => 'default.blade.php',
                             ])->required(),
+
                             Builder::make('blocks')->blocks(
                                 app('cms')->theme->getBlockOptions()
                             )->columnSpan(2),
