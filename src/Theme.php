@@ -33,9 +33,11 @@ class Theme
             $className = 'App\\' . $blockOption;
             $block = new $className();
 
-            $schema[] = Block::make($block->name)->schema(
-                $block->getSchema()
-            );
+            $schema[] = Block::make($block->name)
+                ->label($block->label)
+                ->schema(
+                    $block->getSchema()
+                );
         }
 
         return $schema;
