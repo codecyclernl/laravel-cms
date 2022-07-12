@@ -16,9 +16,9 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|^8.1",
         "filament/filament": "^2.7",
-        "illuminate/contracts": "^8.73",
+        "illuminate/contracts": "^8.73|^9.0",
         "spatie/laravel-package-tools": "^1.9.2",
         "symfony/yaml": "^5.0|^6.0",
         "mohamedsabil83/filament-forms-tinyeditor": "v1.5.0"
